@@ -47,8 +47,9 @@ for(file_path in file_names) {
   colnames(data)[which(colnames(data) == "")] <- "Unknown"
   data$Unknown <- NULL
   
-  # Add New SalesType Column
+  # Add New SalesType and Date Columns
   data$SalesType <- ''
+  data$Date <- reportDate
   
   # Find Line where Non Sales Categories Start
   nonSalesStartLine <- which(data$DayPart == "NON-SALES CATEGORIES")
@@ -86,6 +87,9 @@ for(file_path in file_names) {
                                                  "Late Night"))),
                             DayPart))
   
+  # Add Date To All Entries
+  
+  
   # Change Data Types
   data$DayPart <- as.character(data$DayPart)
   data$ItemNum <- as.character(data$ItemNum)
@@ -98,9 +102,10 @@ for(file_path in file_names) {
   data$`FoodCost%` <- as.numeric(data$`FoodCost%`)
   data$`%Sales` <- as.numeric(data$`%Sales`)
   data$SalesType <- as.character(data$SalesType)
+  data$Date <- as.Date(data$Date, format = "%m/%d/%Y")
   
   # Change Column Names
-  colnames(data) <- c("TimeOfDay","ItemID","ItemName","QuantitySold","SellingPrice","SalesTotal","RestaurantTotalCost","TotalProfit","FoodCostPercentage","DailySalesPercentage","SalesType")
+  colnames(data) <- c("TimeOfDay","ItemID","ItemName","QuantitySold","SellingPrice","SalesTotal","RestaurantTotalCost","TotalProfit","FoodCostPercentage","DailySalesPercentage","SalesType","SalesDate")
   
   # Determine the new filename based on the original, for saving the cleaned data
   new_file_name_path <- paste0(file_RootBaseRel,report_year,"/Cleaned/",report_month,"/",editedReportDate,"_cleaned.csv")
