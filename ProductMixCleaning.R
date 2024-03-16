@@ -34,7 +34,7 @@ for(file_path in file_names) {
   concatenated_header[concatenated_header == ""] <- "Unknown"
   
   # Read the data, skipping the first 10 lines to start reading from the data part
-  data <- read_csv(file_path, skip = 11, col_names = FALSE)
+  data <- read_csv(file_path, skip = 11, show_col_types = FALSE, col_names = FALSE)
   
   # Assign the concatenated headers as column names
   colnames(data) <- concatenated_header
