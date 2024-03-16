@@ -1,3 +1,6 @@
+# Parker Sweeney 03/15/2024
+# Code will show parsing warnings in the console, can be disregarded
+
 # Load the necessary libraries
 library(readr)
 library(dplyr)
@@ -95,10 +98,10 @@ for(file_path in file_names) {
   data$`FoodCost%` <- as.numeric(data$`FoodCost%`)
   data$`%Sales` <- as.numeric(data$`%Sales`)
   data$SalesType <- as.character(data$SalesType)
-
+  
   # Change Column Names
   colnames(data) <- c("TimeOfDay","ItemID","ItemName","QuantitySold","SellingPrice","SalesTotal","RestaurantTotalCost","TotalProfit","FoodCostPercentage","DailySalesPercentage","SalesType")
-    
+  
   # Determine the new filename based on the original, for saving the cleaned data
   new_file_name_path <- paste0(file_RootBaseRel,report_year,"/Cleaned/",report_month,"/",editedReportDate,"_cleaned.csv")
   
